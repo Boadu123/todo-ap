@@ -16,7 +16,7 @@ export const getTodos = async (req, res, next) => {
     // Return Response
     res.status(200).json(todos);
   } catch (error) {
-    next(error)
+    next(error);
   }
 };
 
