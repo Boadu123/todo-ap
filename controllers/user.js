@@ -1,8 +1,8 @@
 export const userRegister = (req, res, next) => {
-    // validate user input
-    // Write todo to database
-    // Respond to request
-    res.json("User is registered");
+  // validate user input
+  // Write todo to database
+  // Respond to request
+  res.json("User is registered");
 };
 
 export const userLogin = (req, res, next) => {
@@ -11,4 +11,8 @@ export const userLogin = (req, res, next) => {
 
 export const userLogout = (req, res, next) => {
   res.json("User is Logged Out");
+};
+
+export const updateProfile = (req, res, next) => {
+  res.json("USer Profile was updated");
 };
