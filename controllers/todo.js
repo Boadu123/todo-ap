@@ -1,8 +1,16 @@
 import { TodoModel } from "../models/todo.js";
+import { addTodoValidator, updateTodoValidator } from "../validators/todo.js";
 
 export const addTodo = async (req, res, next) => {
   try {
-    await TodoModel.create(req.body);
+    const { error, value } = addTodoValidator.validate({
+      ...req.body,
+      icon: req.file?.filename
+    });
+    if (error) {
+      return res.status(422).json(error);
+    }
+    await TodoModel.create(value);
     res.status(201).json("todo was added");
   } catch (error) {
     next(error);
