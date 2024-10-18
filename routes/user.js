@@ -7,7 +7,7 @@ import {
   userRegister,
 } from "../controllers/user.js";
 import { userAvatarUpload } from "../middlewares/upload.js";
-import { isAuthenticated } from "../middlewares/auth.js";
+import { hasPermission, isAuthenticated } from "../middlewares/auth.js";
 
 const userRouter = Router();
 
@@ -15,7 +15,7 @@ userRouter.post("/users/register", userRegister);
 
 userRouter.post("/users/login", userLogin);
 
-userRouter.get("/users/me", isAuthenticated, getProfile);
+userRouter.get("/users/me", isAuthenticated, hasPermission("get_profile"), getProfile);
 
 userRouter.post("/users/logout", isAuthenticated, userLogout);
 

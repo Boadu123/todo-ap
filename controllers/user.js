@@ -72,7 +72,7 @@ export const getProfile = async (req, res, next) => {
       password: false,
     });
     // Respond to request
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
     next(error);
   }
@@ -83,5 +83,9 @@ export const userLogout = (req, res, next) => {
 };
 
 export const updateProfile = (req, res, next) => {
-  res.json("USer Profile was updated");
-};
+try {
+    res.json("USer Profile was updated");
+  
+} catch (error) {
+  next(error)
+}};
