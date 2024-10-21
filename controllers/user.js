@@ -5,6 +5,7 @@ import {
 import { UserModel } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { mailTransporter } from "../utils/mail.js";
 
 export const userRegister = async (req, res, next) => {
   try {
@@ -27,6 +28,11 @@ export const userRegister = async (req, res, next) => {
       password: hashedPassword,
     });
     // Send user confirmation email
+    await mailTransporter.sendMail({
+      to: value.email,
+      subject: "user registration",
+      text: "Account Registered sucessfully"
+    })
     // Respond to request
     res.json("User is registered");
   } catch (error) {
